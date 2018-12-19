@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Add Bike To Profile{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+    <form method=post>
+      <dl>
+        <dt>Bike:
+        <dd><select name="bikes">
+        {% for bike in bikes %}
+        <option value="{{ bike[0] }}">{{ bike[1] }}</option>
+        {% endfor %}
+        </select>
+        <br><br>
+        <dd><input type=submit value="Submit">
+      </dl>
+    </form>
+{% endblock %}

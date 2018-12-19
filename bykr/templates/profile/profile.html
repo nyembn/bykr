@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Biker Profile{% endblock %}</h1>
+  <h3> <a href="{{url_for('user_tasks.add_bike_profile')}}">Add New Bike to Profile</a> </h3>
+{% endblock %}
+
+
+{% block content %}
+<header>
+        <div>
+          <h4>My Bikes</h4>
+        </div>
+      </header>
+  {% for bike in bikes %}
+      <ul>
+		<li>{{ bike[0] }}</li>
+	</ul>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

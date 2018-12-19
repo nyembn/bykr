@@ -1,0 +1,23 @@
+runtime: python27
+threadsafe: true
+#entrypoint: gunicorn -b :$PORT main:app
+handlers:
+- url: /static
+  static_dir: static
+- url: /.*
+  script: main.app
+#[START cloudsql_settings]
+beta_settings:
+    # Cloud SQL connection name
+    # Remember to update the values in config.py.
+    # cloud_sql_instances: "bykrblog:us-central1:bykrblogdb"
+#[END cloudsql_settings]
+libraries:
+- name: ssl
+  version: latest
+- name: MySQLdb
+  version: "latest"
+env_variables:
+    CLOUDSQL_CONNECTION_NAME: bykrblog:us-central1:bykrblogdb
+    CLOUDSQL_USER: root
+    CLOUDSQL_PASSWORD: hello1234
