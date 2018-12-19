@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import flaskr
+import bykr
 import config
 
 
-app = flaskr.create_app()
+app = bykr.create_app()
 
 
 # This is only used when running locally. When running live, gunicorn runs
