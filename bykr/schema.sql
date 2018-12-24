@@ -11,6 +11,10 @@ CREATE TABLE post (
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   title TEXT NOT NULL,
   body TEXT NOT NULL,
+  miles_biked FLOAT,
+  average_speed FLOAT,
+  max_speed FLOAT,
+  calories_burned FLOAT,
   FOREIGN KEY (author_id) REFERENCES user (id)
 );
 
@@ -27,13 +31,24 @@ CREATE TABLE user_bike (
 );
 
 CREATE TABLE tag(
-	id PRIMARY KEY AUTO_INCREMENT,
+	id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	title VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE post_tag(
-	p_id INTEGER NOT NULL,
-	t_id INTEGER NOT NULL,
-	FOREIGN KEY (p_id) REFERENCES post (id),
-  	FOREIGN KEY (t_id) REFERENCES tag (id)
+	post_id INTEGER NOT NULL,
+	tag_id INTEGER NOT NULL,
+	FOREIGN KEY (post_id) REFERENCES post (id),
+  	FOREIGN KEY (tag_id) REFERENCES tag (id)
+)
+
+CREATE TABLE statistics(
+	user_id INTEGER NOT NULL,
+	post_id INTEGER NOT NULL,
+	add miles_biked FLOAT,
+	add average_speed FLOAT,
+	add max_speed FLOAT,
+	add calories_burned FLOAT;
+	FOREIGN KEY (user_id) REFERENCES user (id),
+	FOREIGN KEY (post_id) REFERENCES post (id)
 );

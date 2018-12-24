@@ -20,3 +20,14 @@ def profile():
 	
 	bikes = c.fetchall()
 	return render_template('profile/profile.html', bikes = bikes)
+
+@bp.route('/profile/ride_stats')
+@login_required
+def ride_stats():
+	db = get_db()
+	c = db.cursor()
+	c.execute('SELECT average_speed from post WHERE author_id=%s',
+		  [g.user[0],])
+	series = c.fetchall()
+	
+	return render_template('profile/ride_stats.html', series=series)

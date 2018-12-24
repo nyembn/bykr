@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Ride Stats{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+<canvas id="speedChart" width="100" height="100"></canvas>
+
+</div>		
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+			
+<script>
+var counts = {{ series|tojson }}; 
+var ctx = document.getElementById("speedChart");
+var speedChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        datasets: [{
+            label: 'My Average Speed Last 5 Rides',
+            data: counts
+        }],
+        labels: ['January', 'February', 'March', 'April', 'May']
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    suggestedMin: 0,
+                    suggestedMax: 50
+                }
+            }]
+        }
+    }
+});
+
+</script>
+
+{% endblock %}

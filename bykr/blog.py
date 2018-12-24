@@ -48,6 +48,10 @@ def create():
         title = request.form['title']
         body = request.form['body']
 	bike = request.form['bike_used']
+	miles_biked = request.form['miles_biked']
+        average_speed = request.form['average_speed']
+        max_speed = request.form['max_speed']
+        calories_burned = request.form['calories_burned']
         error = None
 
         if not title:
@@ -59,9 +63,9 @@ def create():
             db = get_db()
 	    c = db.cursor()
             c.execute(
-                'INSERT INTO post (title, body, author_id, bike_used)'
-                ' VALUES (%s, %s, %s, %s)',
-                [title, body, g.user[0], bike]
+                'INSERT INTO post (title, body, author_id, bike_used, miles_biked, average_speed, max_speed, calories_burned)'
+                ' VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
+                [title, body, g.user[0], bike, miles_biked, average_speed, max_speed, calories_burned]
             )
             db.commit()
             return redirect(url_for('blog.index'))

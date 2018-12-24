@@ -11,7 +11,6 @@
 {% block content %}
   <form method="post">
     <label for="title">Title</label>
-    <label for="title2">New Title</label>
     <input name="title" id="title" value="{{ request.form['title'] }}" required>
     <br>
     <label for="body">Body</label>
@@ -23,7 +22,19 @@
         <option value="{{ bike[0] }}">{{ bike[0] }}</option>
         {% endfor %}
         </select>
-    <input type="submit" value="Save">
+        <label for="miles_biked">Miles Biked</label>
+        <input name="miles_biked" id="miles_biked" value="{{ request.form['miles_biked'] }}">
+
+        <label for="average_speed">Average Speed</label>
+        <input name="average_speed" id="average_speed" value="{{ request.form['average_speed'] }}">
+
+        <label for="max_speed">Maximum Speed</label>
+        <input name="max_speed" id="max_speed" value="{{ request.form['max_speed'] }}">
+
+        <label for="calories_burned">Calories Burned</label>
+        <input name="calories_burned" id="calories_burned" value="{{ request.form['calories_burned'] }}">
+
+    <input type="submit" value="Post">
   </form>
 {% endblock %}
 </div>
