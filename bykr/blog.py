@@ -6,6 +6,11 @@ import pdb
 from bykr.auth import login_required
 from bykr.db import get_db
 
+#Jeeves related import
+#import JeevesLib
+#from sourcetrans.macro_module import macros, jeeves
+
+
 bp = Blueprint('blog', __name__)
 
 """
@@ -31,7 +36,8 @@ def index():
     db = get_db()
     c = db.cursor()
     c.execute(
-        'SELECT p.id, title, body, created, author_id, username, bike_used'
+        'SELECT p.id, title, body, created, author_id, username, bike_used,'
+        ' average_speed, max_speed'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     )
@@ -100,6 +106,8 @@ def get_post(id, check_author=True):
         abort(403)
 
     return post
+
+#def average_speed()
 
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
 @login_required
