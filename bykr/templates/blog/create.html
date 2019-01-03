@@ -4,7 +4,7 @@
 <div class="row justify-content-md-center">
 <
 {% block header %}
-  <h1>{% block title %}New Post{% endblock %}</h1>
+  <center><h4>{% block title %}New Post{% endblock %}</h4></center>
 {% endblock %}
 </div>
 
@@ -14,7 +14,8 @@
     <input name="title" id="title" value="{{ request.form['title'] }}" required>
     <br>
     <label for="body">Body</label>
-    <textarea name="body" id="body">{{ request.form['body'] }}</textarea>
+    <textarea rows="4" cols="50" name="body" id="body">{{ request.form['body'] }}</textarea>
+    <br>
 	<dt>Bike Used:
         <dd><select name="bike_used">
 	<option value="None">None</option>
@@ -22,15 +23,17 @@
         <option value="{{ bike[0] }}">{{ bike[0] }}</option>
         {% endfor %}
         </select>
+        <br>
         <label for="miles_biked">Miles Biked</label>
         <input name="miles_biked" id="miles_biked" value="{{ request.form['miles_biked'] }}">
+        <br>
 
         <label for="average_speed">Average Speed</label>
         <input name="average_speed" id="average_speed" value="{{ request.form['average_speed'] }}">
-
+        <br>
         <label for="max_speed">Maximum Speed</label>
         <input name="max_speed" id="max_speed" value="{{ request.form['max_speed'] }}">
-
+        <br>
         <label for="calories_burned">Calories Burned</label>
         <input name="calories_burned" id="calories_burned" value="{{ request.form['calories_burned'] }}">
 

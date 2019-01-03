@@ -2,9 +2,9 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
-import pdb
 from bykr.auth import login_required
 from bykr.db import get_db
+import mysql.connector
 
 #Jeeves related import
 #import JeevesLib
@@ -39,6 +39,7 @@ def index():
         'SELECT p.id, title, body, created, author_id, username, bike_used,'
         ' average_speed, max_speed'
         ' FROM post p JOIN user u ON p.author_id = u.id'
+        ' LEFT JOIN statistics s ON p.id = s.post_id'
         ' ORDER BY created DESC'
     )
     #pdb.set_trace()
@@ -66,15 +67,26 @@ def create():
         if error is not None:
             flash(error)
         else:
-            db = get_db()
-	    c = db.cursor()
-            c.execute(
-                'INSERT INTO post (title, body, author_id, bike_used, miles_biked, average_speed, max_speed, calories_burned)'
-                ' VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
-                [title, body, g.user[0], bike, miles_biked, average_speed, max_speed, calories_burned]
+            #C db = get_db()
+            cnx = mysql.connector.connect(host='127.0.0.1', user='root', passwd='hello1234', db='bblog')
+	    #C c = db.cursor()
+        c = cnx.cursor()
+        c.execute(
+                'INSERT INTO post (title, body, author_id, bike_used)'
+                ' VALUES (%s, %s, %s, %s)',
+                [title, body, g.user[0], bike]
             )
-            db.commit()
-            return redirect(url_for('blog.index'))
+        pid = c.lastrowid
+        c.execute(
+                'INSERT INTO statistics (post_id, miles_biked, average_speed, max_speed, calories_burned)'
+                ' VALUES (%s, %s, %s, %s, %s)',
+                [pid, miles_biked, average_speed, max_speed, calories_burned])
+        cnx.commit()
+
+        c.close()
+        cnx.close()
+        return redirect(url_for('blog.index'))
+# Following is to extract the list of this users bike on GET
     else:
 	#pdb.set_trace()
         db = get_db()

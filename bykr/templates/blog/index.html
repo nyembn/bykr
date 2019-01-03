@@ -3,7 +3,7 @@
 {% block header %}
 <center><h5>{% block title %}Posts By Bykrs{% endblock %}</h5></center>
 {% if g.user %}
-<a class="action" href="{{ url_for('blog.create') }}"><h3>Crate a New Post</h3></a>
+<center><h5><a class="action" href="{{ url_for('blog.create') }}">Crate a New Post</a></h5></center>
 {% endif %}
 {% endblock %}
 
@@ -11,10 +11,14 @@
 {% block content %}
 {% for post in posts %}
 <header>
-  <div>
+  <div class="row">
+  <div class="col">
     <b>{{ post[1] }} </b> by <i>{{ post[5] }}</i> on {{ post[3].strftime('%Y-%m-%d') }}
+    </div>
     {% if g.user[1] == post[5] %}
+    <div class="col">
     <a class="action" href="{{ url_for('blog.update', id=post[0]) }}">Edit</a>
+    </div>
     {% endif %}
   </div>
 </header>

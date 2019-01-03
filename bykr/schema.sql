@@ -43,12 +43,21 @@ CREATE TABLE post_tag(
 )
 
 CREATE TABLE statistics(
-	user_id INTEGER NOT NULL,
+  id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	post_id INTEGER NOT NULL,
-	add miles_biked FLOAT,
-	add average_speed FLOAT,
-	add max_speed FLOAT,
-	add calories_burned FLOAT;
-	FOREIGN KEY (user_id) REFERENCES user (id),
+	miles_biked FLOAT,
+	average_speed FLOAT,
+	max_speed FLOAT,
+	calories_burned FLOAT,
 	FOREIGN KEY (post_id) REFERENCES post (id)
 );
+
+START TRANSACTION;
+   DECLARE @PID int;
+INSERT INTO post (title, body, author_id, bike_used)'
+        ' VALUES (%s, %s, %s, %s, %s, %s, %s, %s)',
+        SELECT @PID:= something
+        @A:=SUM(salary) FROM table1 WHERE type=1;
+INSERT INTO statistics (post_id, biked, average_speed, max_speed, calories_burned)
+  'VALUES @PID, %s, %s, %s,)'
+COMMIT;

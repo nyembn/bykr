@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Biker Profile{% endblock %}</h1>
-  <h3> <a href="{{url_for('user_tasks.add_bike_profile')}}">Add New Bike to Profile</a> </h3>
-<h3> <a href="{{url_for('profile.ride_stats')}}">My Ride Stats</a> </h3>
+  <center><h5>{% block title %}Biker Profile{% endblock %}</h5></center>
+  <center><h5><a href="{{url_for('user_tasks.add_bike_profile')}}">Add New Bike to Profile</a></h5></center>
+<center><h5><a href="{{url_for('profile.ride_stats')}}">My Ride Stats</a></h5></center>
 {% endblock %}
 
 
 {% block content %}
 <header>
         <div>
-          <h4>My Bikes</h4>
+          <h5>My Bikes</h5>
         </div>
       </header>
   {% for bike in bikes %}

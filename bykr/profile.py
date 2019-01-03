@@ -28,19 +28,17 @@ def ride_stats():
     db = get_db()
     c = db.cursor()
     c.execute(
-        'SELECT average_speed from post WHERE author_id=%s',
+        'SELECT s.average_speed from statistics s JOIN post p ON s.post_id = p.id WHERE p.author_id=%s',
         [g.user[0],])
     average_speed_series = c.fetchall()
 
     c.execute(
-        'SELECT created from post WHERE author_id=%s',
+        'SELECT p.created from post p JOIN statistics s ON p.id = s.post_id WHERE p.author_id = %s',
         [g.user[0],])
     timeData = c.fetchall()
 
-    pdb.set_trace()
-
     c.execute(
-        'SELECT max_speed from post WHERE author_id=%s',
+        'SELECT s.max_speed from statistics s JOIN post p ON s.post_id =p.id WHERE p.author_id=%s',
         [g.user[0],])
     max_speed_series = c.fetchall()
 
