@@ -5,6 +5,11 @@ from werkzeug.exceptions import abort
 from bykr.auth import login_required
 from bykr.db import get_db
 import mysql.connector
+import os
+
+CLOUDSQL_CONNECTION_NAME = os.environ.get('CLOUDSQL_CONNECTION_NAME')
+cloudsql_unix_socket = os.path.join(
+            '/cloudsql', CLOUDSQL_CONNECTION_NAME)
 
 #Jeeves related import
 #import JeevesLib
@@ -68,7 +73,8 @@ def create():
             flash(error)
         else:
             #C db = get_db()
-            cnx = mysql.connector.connect(host='127.0.0.1', user='root', passwd='hello1234', db='bblog')
+            #cnx = mysql.connector.connect(host='127.0.0.1', user='root', passwd='hello1234', db='bblog')
+            cnx = mysql.connector.connect(unix_socket=cloudsql_unix_socket, user='root', passwd='hello1234', db='bblog')
 	    #C c = db.cursor()
         c = cnx.cursor()
         c.execute(

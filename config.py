@@ -21,7 +21,7 @@ You can create and manage projects at https://console.developers.google.com
 import os
 
 # The secret key is used by Flask to encrypt session cookies.
-SECRET_KEY = 'b\xa8\x15\x1a\xea\x1a\r\x88\xdeT\xac\xf4\x95]R\xce\x0c'
+#SECRET_KEY = 'b\xa8\x15\x1a\xea\x1a\r\x88\xdeT\xac\xf4\x95]R\xce\x0c'
 
 # There are three different ways to store the data in the application.
 # You can choose 'datastore', 'cloudsql', or 'mongodb'. Be sure to
