@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<center><h5>{% block title %}Posts By Bykrs{% endblock %}</h5></center>
+<!--<div class="jumbotron">
+   <img src="/static/bykr.jpg">
+  </div>
+  -->
 {% if g.user %}
 <center><h5><a class="action" href="{{ url_for('blog.create') }}">Crate a New Post</a></h5></center>
 {% endif %}
@@ -11,17 +14,24 @@
 {% block content %}
 {% for post in posts %}
 <header>
+  <div class="blog-post">
+    <h2 class="blog-post-title">{{ post[1] }}</h2>
+    <p class="blog-post-meta">{{ post[3].strftime('%Y-%m-%d') }} by {{ post[5] }}</p>
+
+  <!--
   <div class="row">
   <div class="col">
     <b>{{ post[1] }} </b> by <i>{{ post[5] }}</i> on {{ post[3].strftime('%Y-%m-%d') }}
     </div>
     {% if g.user[1] == post[5] %}
     <div class="col">
-    <a class="action" href="{{ url_for('blog.update', id=post[0]) }}">Edit</a>
+
+    <a class="action" href="{{ url_for('blog.update', id=post[0]) }}"><p class="text-right">Edit</p></a>
     </div>
     {% endif %}
   </div>
 </header>
+-->
 <p>{{ post[2] }}</p>
 <!--
 <div class="row">

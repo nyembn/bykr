@@ -1,17 +1,27 @@
 {% extends 'base.html' %}
 
 {% block header %}
+<link href="signin.css" rel="stylesheet">
+
   <center><h4>{% block title %}Bike In{% endblock %}</h4></center>
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <br>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <br>
-    <input type="submit" value="Bike In">
+<body class="text-center">
+  <form method="post" class="form-signin">
+    <!-- <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
+    <label for="username" class="sr-only">Username</label>
+    <input name = "username" class="form-control" placeholder="Username" required autofocus>
+    <label for="password" class="sr-only">Password</label>
+    <input name = "password" type="password" class="form-control" placeholder="Password" required>
+    <!--<div class="checkbox mb-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Remember me
+      </label>
+    </div>
+    -->
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Bike In</button>
+    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
   </form>
+</body>
 {% endblock %}

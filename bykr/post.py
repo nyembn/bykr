@@ -64,6 +64,7 @@ def create():
         average_speed = request.form['average_speed']
         max_speed = request.form['max_speed']
         calories_burned = request.form['calories_burned']
+        tags = request.form['tags']
         error = None
 
         if not title:
