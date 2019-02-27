@@ -1,12 +1,10 @@
 {% extends 'base.html' %}
-
-{% block header %}
 <link href="signin.css" rel="stylesheet">
-
+{% block header %}
   <center><h4>{% block title %}Bike In{% endblock %}</h4></center>
 {% endblock %}
 
-{% block content %}
+{% block forms %}
 <body class="text-center">
   <form method="post" class="form-signin">
     <!-- <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72"> -->
@@ -21,7 +19,7 @@
     </div>
     -->
     <button class="btn btn-lg btn-primary btn-block" type="submit">Bike In</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+    <p class="mt-5 mb-3 text-muted">Created by Nayeem</p>
   </form>
 </body>
 {% endblock %}
