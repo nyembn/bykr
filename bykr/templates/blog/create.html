@@ -25,17 +25,17 @@
         </select>
         <br>
         <label for="miles_biked">Miles Biked</label>
-        <input name="miles_biked" id="miles_biked" value="{{ request.form['miles_biked'] }}">
+        <input name="miles_biked" id="miles_biked" value="{{ request.form['miles_biked'] }}" required>
         <br>
 
         <label for="average_speed">Average Speed</label>
-        <input name="average_speed" id="average_speed" value="{{ request.form['average_speed'] }}">
+        <input name="average_speed" id="average_speed" value="{{ request.form['average_speed'] }}" required>
         <br>
         <label for="max_speed">Maximum Speed</label>
-        <input name="max_speed" id="max_speed" value="{{ request.form['max_speed'] }}">
+        <input name="max_speed" id="max_speed" value="{{ request.form['max_speed'] }}" required>
         <br>
         <label for="calories_burned">Calories Burned</label>
-        <input name="calories_burned" id="calories_burned" value="{{ request.form['calories_burned'] }}">
+        <input name="calories_burned" id="calories_burned" value="{{ request.form['calories_burned'] }}" required>
         <br>
         <label for="tags">Tags</label>
         <input name="tags" id="tags" value="{{ request.form['tags'] }}">

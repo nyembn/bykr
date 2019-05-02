@@ -1,6 +1,6 @@
-import MySQLdb
 import os
 import click
+import mysql.connector
 from flask import current_app, g
 from flask.cli import with_appcontext
 
@@ -25,12 +25,13 @@ def get_db():
             cloudsql_unix_socket = os.path.join(
             '/cloudsql', CLOUDSQL_CONNECTION_NAME)
 
-            g.db = MySQLdb.connect(
+            '''g.db = MySQLdb.connect(
             unix_socket=cloudsql_unix_socket,
             user=CLOUDSQL_USER,
-            passwd=CLOUDSQL_PASSWORD, db='bblog')
+            passwd=CLOUDSQL_PASSWORD, db='bblog')'''
+            g.db = mysql.connector.connect(unix_socket=cloudsql_unix_socket, user='root', passwd='hello1234', db='bblog')
         else:
-            g.db = MySQLdb.connect(
+            g.db = mysql.connector.connect(
             host='127.0.0.1', user=CLOUDSQL_USER, passwd=CLOUDSQL_PASSWORD, db='bblog')
 
 

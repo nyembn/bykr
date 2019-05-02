@@ -73,11 +73,8 @@ def create():
         if error is not None:
             flash(error)
         else:
-            #C db = get_db()
-            #cnx = mysql.connector.connect(host='127.0.0.1', user='root', passwd='hello1234', db='bblog')
-            cnx = mysql.connector.connect(unix_socket=cloudsql_unix_socket, user='root', passwd='hello1234', db='bblog')
-	    #C c = db.cursor()
-        c = cnx.cursor()
+            db = get_db()
+            c = db.cursor()
         c.execute(
                 'INSERT INTO post (title, body, author_id, bike_used)'
                 ' VALUES (%s, %s, %s, %s)',
@@ -88,10 +85,10 @@ def create():
                 'INSERT INTO statistics (post_id, miles_biked, average_speed, max_speed, calories_burned)'
                 ' VALUES (%s, %s, %s, %s, %s)',
                 [pid, miles_biked, average_speed, max_speed, calories_burned])
-        cnx.commit()
+        db.commit()
 
         c.close()
-        cnx.close()
+        db.close()
         return redirect(url_for('blog.index'))
 # Following is to extract the list of this users bike on GET
     else:

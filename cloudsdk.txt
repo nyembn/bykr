@@ -1,0 +1,5 @@
+gcloud components list -- list the components installed.
+gcloud config set disable_usage_reporting true
+gcloud components install/remove COMPONENT_ID,
+gcloud components update
+gcloud sql connect connect to database
