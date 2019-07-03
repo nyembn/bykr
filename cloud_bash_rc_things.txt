@@ -1,6 +1,0 @@
-The Google Cloud SDK installer will now prompt you to update an rc 
-file to bring the Google Cloud CLIs into your environment.
-
-Enter a path to an rc file to update, or leave blank to use 
-[/home/beautiful/.bashrc]
-
