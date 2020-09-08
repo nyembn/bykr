@@ -10,7 +10,7 @@ handlers:
 beta_settings:
     # Cloud SQL connection name
     # Remember to update the values in config.py.
-    # cloud_sql_instances: "bykrblog:us-central1:bykrblogdb"
+    # cloud_sql_instances: "bykrblog:us-central1:bykrblg"
 #[END cloudsql_settings]
 libraries:
 - name: ssl
@@ -18,6 +18,6 @@ libraries:
 - name: MySQLdb
   version: "latest"
 env_variables:
-    CLOUDSQL_CONNECTION_NAME: bykrblog:us-central1:bykrblogdb
+    CLOUDSQL_CONNECTION_NAME: bykrblog:us-central1:bykrblg
     CLOUDSQL_USER: root
     CLOUDSQL_PASSWORD: hello1234

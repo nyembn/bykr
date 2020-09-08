@@ -27,11 +27,11 @@ PROJECT_ID = 'bykrblog'
 # instance.
 CLOUDSQL_USER = 'root'
 CLOUDSQL_PASSWORD = 'hello1234'
-CLOUDSQL_DATABASE = 'bblog'
+CLOUDSQL_DATABASE = 'bykrblg'
 # Set this value to the Cloud SQL connection name, e.g.
 #   "project:region:cloudsql-instance".
 # You must also update the value in app.yaml.
-CLOUDSQL_CONNECTION_NAME = 'bykrblog:us-central1:bykrblogdb'
+CLOUDSQL_CONNECTION_NAME = 'bykrblog:us-central1:bykrblg'
 
 # The CloudSQL proxy is used locally to connect to the cloudsql instance.
 # To start the proxy, use:
