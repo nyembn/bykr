@@ -2,53 +2,40 @@
 {% block title %}Home{% endblock %}
 
 {% block header %}
-   <img src="{{url_for('static', filename='bykr.jpg')}}" class="img-fluid img-thumbnail">
-
-{% if g.user %}
-<center><h5><a class="action" href="{{ url_for('blog.create') }}">New Post</a></h5></center>
-{% endif %}
+<div class="text-center">
+    <img src="{{url_for('static', filename='bykr.jpg')}}" class="img-fluid img-thumbnail" width="800" height="800">
+</div>
 {% endblock %}
 
 
 {% block content %}
 {% for post in posts %}
-  <div class="blog-post">
-    <div class="row">
-      <div class=col">
-    <h2 class="blog-post-title">{{ post[1] }}</h2>
-    <p class="blog-post-meta">{{ post[3].strftime('%Y-%m-%d') }} by {{ post[5] }}</p>
-  <!--
-    <b>{{ post[1] }} </b> by <i>{{ post[5] }}</i> on {{ post[3].strftime('%Y-%m-%d') }}
-    -->
-    </div>
+<div class="blog-post">
+    <div class="row" >
+        <div class="col text-right">
+            <h3> {{ post[1] }}</h3>
+            <p class="blog-post-meta">{{ post[3].strftime('%Y-%m-%d') }} by {{ post[5] }}</p>
+        </div>
+    
     <div class="col">
     {% if g.user[1] == post[5] %}
-    <a href="{{ url_for('blog.update', id=post[0]) }}"><p class="text-right">Edit</p></a>
+    <a class="btn btn-sm btn-outline-secondary" href="{{ url_for('blog.update', id=post[0]) }}">Edit</a>
     {% endif %}
     </div>
+</div>
+<div class="row">
+    <div class="col">
+        <p>{{ post[2] }}</p>
+        <p class="text-justify">Bike Used: {{ post[6] }}
+        Average Speed: {{ post[7]}}
+        Max Speed: {{ post[8]}}</p>
     </div>
 
-  </div>
-<p>{{ post[2] }}</p>
-<!--
-<div class="row">
-  <div class="col">
-    Bike Used: {{ post[6] }}
-  </div>
-  <div class="col">
-    Average Speed: {{ post[7]}}
-  </div>
-  <div class="col">
-    Max Speed: {{ post[8]}}
-  </div>
+    <div class="col">
+    </div>
 </div>
--->
-    <p>Bike Used: {{ post[6] }} <br>
-    Average Speed: {{ post[7]}}<br>
-    Max Speed: {{ post[8]}}</p>
-
 {% if not loop.last %}
-<hr>
+<!-- <hr> -->
 {% endif %}
 {% endfor %}
 {% endblock %}

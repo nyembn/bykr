@@ -8,13 +8,7 @@ import mysql.connector
 import os
 
 CLOUDSQL_CONNECTION_NAME = os.environ.get('CLOUDSQL_CONNECTION_NAME')
-cloudsql_unix_socket = os.path.join(
-            '/cloudsql', CLOUDSQL_CONNECTION_NAME)
-
-#Jeeves related import
-#import JeevesLib
-#from sourcetrans.macro_module import macros, jeeves
-
+#cloudsql_unix_socket = os.path.join('/cloudsql', CLOUDSQL_CONNECTION_NAME)
 
 bp = Blueprint('blog', __name__)
 
@@ -59,8 +53,8 @@ def create():
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
-	bike = request.form['bike_used']
-	miles_biked = request.form['miles_biked']
+        bike = request.form['bike_used']
+        miles_biked = request.form['miles_biked']
         average_speed = request.form['average_speed']
         max_speed = request.form['max_speed']
         calories_burned = request.form['calories_burned']
@@ -95,11 +89,11 @@ def create():
 	#pdb.set_trace()
         db = get_db()
         c = db.cursor()
-	c.execute(
+    c.execute(
 		'SELECT manufacturer from bike b JOIN user_bike ub ON b.id = ub.bike_id '
 		'WHERE ub.user_id = %s', [g.user[0],]
 	)
-	bikes = c.fetchall()
+    bikes = c.fetchall()
     return render_template('blog/create.html', bikes=bikes)
 
 def get_post(id, check_author=True):
@@ -142,7 +136,7 @@ def update(id):
             flash(error)
         else:
             db = get_db()
-	    c = db.cursor()
+            c = db.cursor()
             c.execute(
                 'UPDATE post SET title = %s, body = %s'
                 ' WHERE id = %s',

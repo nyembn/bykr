@@ -1,4 +1,5 @@
-bykrVenv/
+venv2/
+venv3/
 mysql/
 lib/
 site-packages/
@@ -7,7 +8,6 @@ appengine_config.py
 setup.py
 app.yaml
 requirements.txt
-venv27/
 *.pyc
 __pycache__/
 

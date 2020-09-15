@@ -6,20 +6,21 @@ from flask.cli import with_appcontext
 
 # These environment variables are configured in app.yaml.
 #CLOUDSQL_CONNECTION_NAME = current_app.config['CLOUDSQL_CONNECTION_NAME']
-'''
+
 CLOUDSQL_USER = 'root'
 CLOUDSQL_PASSWORD = 'hello1234'
-CLOUDSQL_CONNECTION_NAME = 'bykrblog:us-central1:bykrblogdb'
+CLOUDSQL_CONNECTION_NAME = 'bykrblog:us-central1:bykrblg'
 '''
 CLOUDSQL_CONNECTION_NAME = os.environ.get('CLOUDSQL_CONNECTION_NAME')
 CLOUDSQL_USER = os.environ.get('CLOUDSQL_USER')
 CLOUDSQL_PASSWORD = os.environ.get('CLOUDSQL_PASSWORD')
-
+'''
 def get_db():
+    
     if 'db' not in g:
  # When deployed to App Engine, the `SERVER_SOFTWARE` environment variable
     # will be set to 'Google App Engine/version'.
-        if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine/'):
+        if os.getenv('GAE_ENV', '').startswith('standard'):
         # Connect using the unix socket located at
         # /cloudsql/cloudsql-connection-name.
             cloudsql_unix_socket = os.path.join(
@@ -31,8 +32,7 @@ def get_db():
             passwd=CLOUDSQL_PASSWORD, db='bblog')'''
             g.db = mysql.connector.connect(unix_socket=cloudsql_unix_socket, user='root', passwd='hello1234', db='bblog')
         else:
-            g.db = mysql.connector.connect(
-            host='127.0.0.1', user=CLOUDSQL_USER, passwd=CLOUDSQL_PASSWORD, db='bblog')
+            g.db = mysql.connector.connect(host='127.0.0.1', user=CLOUDSQL_USER, passwd=CLOUDSQL_PASSWORD, db='bblog')
 
 
     return g.db
@@ -106,4 +106,4 @@ app = webapp2.WSGIApplication([
     ('/', MainPage),
 ], debug=True)
 '''
-
+#./cloud_sql_proxy -instances=<bykrblog:us-central1:bykrblg>=tcp:3306

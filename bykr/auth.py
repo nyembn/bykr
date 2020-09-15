@@ -48,14 +48,14 @@ def login():
         password = request.form['password']
         db = get_db()
         error = None
-	c= db.cursor()
+        c= db.cursor()
         c.execute(
             'SELECT * FROM user WHERE username = %s', [username,]
         )
-	user = c.fetchone()
+        user = c.fetchone()
         if user is None:
-            error = 'Incorrect username.'
-        elif not check_password_hash(user[2], password):
+            error = 'Incorrect username'
+        if not check_password_hash(user[2], password):
             error = 'Incorrect password.'
 
         if error is None:
@@ -65,7 +65,7 @@ def login():
 
         flash(error)
 
-    return render_template('auth/login.html')
+    return render_template('auth/login_ti.html')
 
 
 @bp.before_app_request
@@ -76,12 +76,12 @@ def load_logged_in_user():
         g.user = None
     else:
         db = get_db()
-	c = db.cursor()
-	c.execute(
+        c = db.cursor()
+        c.execute(
             'SELECT * FROM user WHERE username = %s', [user_id,]
         )
 	#pdb.set_trace()
-	g.user = c.fetchone()
+        g.user = c.fetchone()
 
 @bp.route('/logout')
 def logout():

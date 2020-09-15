@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+<link href="signin.css" rel="stylesheet">
+{% block header %}
+  <center><h4>{% block title %}Please use Username - user and Password - 1234 for a demo account{% endblock %}</h4></center>
+{% endblock %}
+
+{% block forms %}
+  <form method="post" class="form-signin">
+    <label for="username" class="sr-only">Username</label>
+    <input name = "username" class="form-control" placeholder="Username" required autofocus>
+    <label for="password" class="sr-only">Password</label>
+    <input name = "password" type="password" class="form-control" placeholder="Password" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Bike In</button>
+  </form>
+
+{% endblock %}
