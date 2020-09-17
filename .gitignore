@@ -1,5 +1,6 @@
 venv3/
 mysql/
+tools/
 config.py
 appengine_config.py
 setup.py
